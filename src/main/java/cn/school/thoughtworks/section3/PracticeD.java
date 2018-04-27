@@ -26,28 +26,18 @@ public class PracticeD {
         }
 
 
-        Map<String, Integer> Result = new HashMap<String, Integer>();
-        String[] str= object.get("value").toArray(new String[0]);
-        for (String s1:collection3.keySet())
+        for(int i=0;i<object.get("value").size();i++)
         {
-            for(String s2 : str)
+            int newKey=collection3.get(object.get("value").get(i));
+            if (collection3.containsKey(object.get("value").get(i)))
             {
-                if(s1 == s2)
-                {
-                    if (collection3.get(s1)>=3) {
-                        int n=collection3.get(s1)/3;
-                        int v=collection3.get(s1)-n;
-                        Result.put(s1,v);
-                        break;
-                    }
-                }
-                else
-                {
-                    Result.put(s1,collection3.get(s1));
+                if (newKey>=3) {
+                    newKey-=newKey/3;
+                    collection3.put(object.get("value").get(i),newKey);
                 }
             }
         }
 
-        return Result;
+        return collection3;
     }
 }
